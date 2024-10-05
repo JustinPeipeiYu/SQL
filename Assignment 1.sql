@@ -1,0 +1,44 @@
+--Display SQL properties
+SELECT SERVERPROPERTY('edition')
+SELECT SERVERPROPERTY ('MachineName')
+SELECT SERVERPROPERTY ('INSTANCEDEFAULTDATAPATH')
+SELECT SERVERPROPERTY ('INSTANCEDEFAULTLOGPATH')
+SELECT SERVERPROPERTY ('PRODUCTVERSION')
+SELECT @@version
+
+
+--Restore a database from a backup location
+USE master;
+GO
+ALTER DATABASE NBA SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+RESTORE DATABASE NBA FROM DISK = 'C:\Users\Public\Documents\Conestoga\COMP1225\NBA.bak';
+ALTER DATABASE NBA SET MULTI_USER;
+
+--Display all tables in a database
+SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE='BASE TABLE'
+
+--Count the number of tables in a database
+USE AdventureWorksLT2022
+SELECT COUNT(*)
+FROM INFORMATION_SCHEMA.TABLES
+WHERE TABLE_TYPE = 'BASE TABLE'
+
+--Display network connectivity
+select * from sys.dm_exec_connections
+where session_id = @@SPID
+
+--Display all tables in a database
+SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE='BASE TABLE'
+
+--Count the number of tables in a database
+USE CHDB
+SELECT COUNT(*)
+FROM INFORMATION_SCHEMA.TABLES
+WHERE TABLE_TYPE = 'BASE TABLE'
+
+--Display all tables in a database
+SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE='BASE TABLE'
+
+--Count all items in a database
+SELECT COUNT(*) FROM CHDB.dbo.items;
+
